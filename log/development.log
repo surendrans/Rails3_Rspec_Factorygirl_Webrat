@@ -1,0 +1,125 @@
+  [1m[36mSQL (42.9ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (256.0ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36mSQL (0.8ms)[0m  [1mSHOW KEYS FROM `schema_migrations`[0m
+  [1m[35mSQL (180.9ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.5ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+Migrating to CreateUsers (20110120191039)
+  [1m[35mSQL (115.0ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36mSQL (43.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20110120191039')[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `users`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW KEYS FROM `users`
+
+
+Started GET "/users" for 127.0.0.1 at Fri Jan 21 00:46:56 +0530 2011
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+Rendered users/index.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 83ms (Views: 9.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at Fri Jan 21 00:46:59 +0530 2011
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (75.5ms)
+Rendered users/new.html.erb within layouts/application (80.8ms)
+Completed 200 OK in 90ms (Views: 84.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at Fri Jan 21 00:47:02 +0530 2011
+  Processing by UsersController#create as HTML
+  Parameters: {"commit"=>"Create User", "authenticity_token"=>"HUR09qXiQUi4ZG9IsN2lGyA3UZL5KbzcCFMpJUccRhM=", "utf8"=>"✓", "user"=>{"name"=>"suren"}}
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.4ms)[0m  describe `users`
+  [1m[36mAREL (81.4ms)[0m  [1mINSERT INTO `users` (`name`, `updated_at`, `created_at`) VALUES ('suren', '2011-01-20 19:17:02', '2011-01-20 19:17:02')[0m
+  [1m[35mSQL (80.1ms)[0m  COMMIT
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 212ms
+
+
+Started GET "/users/1" for 127.0.0.1 at Fri Jan 21 00:47:02 +0530 2011
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (24.6ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/show.html.erb within layouts/application (9.2ms)
+Completed 200 OK in 46ms (Views: 15.7ms | ActiveRecord: 186.8ms)
+
+
+Started GET "/users" for 127.0.0.1 at Fri Jan 21 00:47:06 +0530 2011
+  Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users`
+Rendered users/index.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 68ms (Views: 11.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users" for 127.0.0.1 at Sun Jan 23 00:08:10 +0530 2011
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (104.8ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+Rendered users/index.html.erb within layouts/application (45.6ms)
+Completed 200 OK in 186ms (Views: 51.9ms | ActiveRecord: 104.8ms)
+
+
+Started GET "/users/1/edit" for 127.0.0.1 at Sun Jan 23 11:13:29 +0530 2011
+  Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSQL (47.5ms)[0m  SHOW TABLES
+  [1m[36mUser Load (31.1ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_form.html.erb (116.1ms)
+Rendered users/edit.html.erb within layouts/application (176.1ms)
+Completed 200 OK in 415ms (Views: 244.7ms | ActiveRecord: 78.6ms)
+
+
+Started POST "/users/1" for 127.0.0.1 at Sun Jan 23 11:13:42 +0530 2011
+  Processing by UsersController#update as HTML
+  Parameters: {"commit"=>"Update User", "authenticity_token"=>"3iPaltu1HCUjpsNPImFZSdNahYkHOgtvIHyiEpmW6Wc=", "utf8"=>"✓", "id"=>"1", "user"=>{"name"=>"suren"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  COMMIT
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 12ms
+
+
+Started GET "/users/1" for 127.0.0.1 at Sun Jan 23 11:13:42 +0530 2011
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/show.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 45ms (Views: 37.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users" for 127.0.0.1 at Mon Jan 24 22:39:15 +0530 2011
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (18.2ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+Rendered users/index.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 184ms (Views: 42.3ms | ActiveRecord: 18.2ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at Mon Jan 24 22:39:20 +0530 2011
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (68.6ms)
+Rendered users/new.html.erb within layouts/application (74.7ms)
+Completed 200 OK in 112ms (Views: 107.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at Mon Jan 24 22:39:27 +0530 2011
+  Processing by UsersController#create as HTML
+  Parameters: {"commit"=>"Create User", "authenticity_token"=>"PKsvw3dbAu0x3cJcU1envSCoaz61vGn18RUG4vnG9sk=", "utf8"=>"✓", "user"=>{"name"=>"sad"}}
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.4ms)[0m  describe `users`
+  [1m[36mAREL (0.5ms)[0m  [1mINSERT INTO `users` (`updated_at`, `created_at`, `name`) VALUES ('2011-01-24 17:09:27', '2011-01-24 17:09:27', 'sad')[0m
+  [1m[35mSQL (46.8ms)[0m  COMMIT
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 68ms
+
+
+Started GET "/users/2" for 127.0.0.1 at Mon Jan 24 22:39:27 +0530 2011
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendered users/show.html.erb within layouts/application (9.2ms)
+Completed 200 OK in 36ms (Views: 28.7ms | ActiveRecord: 48.3ms)
